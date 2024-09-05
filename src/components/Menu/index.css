@@ -1,0 +1,28 @@
+.menu-container {
+  width: 43%;
+  background-color: #131010;
+  padding: 20px;
+}
+
+.head-playlist {
+  color: rgb(25, 129, 221);
+  font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.menu-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-container li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: aliceblue;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  padding-top: 15px;
+}
