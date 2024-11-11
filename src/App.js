@@ -1,57 +1,25 @@
-import {Component} from 'react'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import Services from './components/Services'
+import BookingForm from './components/BookingForm'
+import Testimonials from './components/Testimonials'
+import Footer from './components/Footer'
+import './styles.css'
 
-import Menu from './components/Menu'
-import Playlist from './components/Playlist'
-import Slider from './components/Slider'
-
-import './App.css'
-
-class App extends Component {
-  state = {playlistData: [], selectedPlaylist: {}, selectedVideo: null}
-
-  componentDidMount() {
-    this.getPlaylistDetails()
-  }
-
-  getPlaylistDetails = async () => {
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({Content_Type: 2}),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Api-Key': 'MXqO3cDcr492OTPGZZAot7akPvLmfKbA4bKt5Ryr',
-        'X-Tenant-Key': 'TYKE070323',
-      },
-    }
-    const response = await fetch(
-      'https://5yiek6g5g0.execute-api.ap-south-1.amazonaws.com/Prod/api/engt/getAllPlayList',
-      options,
-    )
-    const fetchData = await response.json()
-
-    const {data} = fetchData
-    this.setState({playlistData: data})
-  }
-
-  handlePlaylistSelect = playlist => {
-    this.setState({selectedPlaylist: playlist})
-  }
-
-  render() {
-    const {playlistData, selectedPlaylist} = this.state
-
-    return (
-      <div className="app-container">
-        <Menu
-          playlists={playlistData}
-          onSelectPlaylist={this.handlePlaylistSelect}
-        />
-        <Playlist selectedPlaylist={selectedPlaylist} />
-
-        {selectedVideo && <Slider video={selectedVideo} />}
-      </div>
-    )
-  }
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/booking" element={<BookingForm />} />
+        <Route path="/testimonials" element={<Testimonials />} />
+      </Routes>
+      <Footer />
+    </Router>
+  )
 }
 
 export default App
